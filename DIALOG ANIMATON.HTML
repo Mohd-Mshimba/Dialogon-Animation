@@ -1,0 +1,41 @@
+ INDEX FILE
+ <!-- SLIDER DIALOG -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+ <!-- END SLIDER -->
+
+ TS FILE
+ @ViewChild('callViewDialog') callViewDialog!: TemplateRef<any>;
+   openViewDialog() {
+       let dialogRef = this.dialog.open(this.callViewDialog,
+       {panelClass: ['animate__animated','animate__slideInRight'], width:"800px"});
+       dialogRef.afterClosed().subscribe(result => {
+           if (result !== undefined) {
+               if (result !== 'no') {
+                   const enabled = "Y"
+                   console.log(result);
+               } else if (result === 'no') {
+                   console.log('User clicked no.');
+               }
+           }
+       })
+   }
+
+   HTML 
+   <a title="View Data" (click)="openViewDialog()">
+       <i class="fa fa-eye" aria-hidden="true"></i>
+   </a>
+
+   <ng-template #callViewDialog  style="width:50%;">
+       <form>
+           <mat-dialog-content class="mat-typography">
+               <h3 >Develop across all platforms</h3>
+               <p>Learn one way to build applications with Angular and reuse your code and abilities to build
+               apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+           </mat-dialog-content>
+
+           <mat-dialog-actions align="end">
+               <button mat-flat-button color="warn">Close</button>
+           </mat-dialog-actions>
+       </form>
+   </ng-template>
+
